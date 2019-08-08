@@ -8,7 +8,7 @@ REM After setting the appropriate variables and switches, run this script as an 
 REM A list of all available variables and switches can be found on Optimize-Offline's GitHub Repository.
 
 REM Set the Optimize-Offline Source Path variable.
-SET "SourcePath=C:\Optimize-Offline\Win10Ent.iso"
+SET "SourcePath=C:\Win10Ent.iso"
 
 NET SESSION >NUL 2>&1
 IF %ERRORLEVEL% NEQ 0 (

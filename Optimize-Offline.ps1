@@ -70,7 +70,7 @@
 	.LINK
 		https://github.com/DrEmpiricism/Optimize-Offline
 #>
-[CmdletBinding(HelpUri = 'https://github.com/DrEmpiricism/Optimize-Offline')]
+[CmdletBinding(HelpUri = 'https://github.com/bevinduplessis/Optimize-Offline')]
 Param
 (
     [Parameter(Mandatory = $true,
@@ -1720,6 +1720,11 @@ If ($Registry.IsPresent)
     Remove-Container -Path "HKLM:\WIM_HKLM_SOFTWARE\Classes\Directory\shellex\ContextMenuHandlers\{596AB062-B4D2-4215-9F74-E9109B0A8153}"
     Remove-Container -Path "HKLM:\WIM_HKLM_SOFTWARE\Classes\Drive\shellex\ContextMenuHandlers\{596AB062-B4D2-4215-9F74-E9109B0A8153}"
     #****************************************************************
+    Write-Output "Adding run once Boxstarter Script." >> $RegLog
+    #****************************************************************
+    Set-KeyProperty -Path "HKLM:\WIM_HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce" -Name "Boxstarter" -Value "powershell.exe -ExecutionPolicy Bypass -Command $([char]34)iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/bevinduplessis/Optimize-Offline/master/Boxstarter/BoxStarter.ps1'))$([char]34)" -Type String
+    #****************************************************************
+
     Get-OfflineHives -Process Unload
 }
 #endregion Registry Optimizations

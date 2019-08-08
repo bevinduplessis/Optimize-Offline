@@ -114,12 +114,6 @@
                     <CommandLine>%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))"</CommandLine>
                     <RequiresUserInput>true</RequiresUserInput>
                 </SynchronousCommand>
-                <SynchronousCommand wcm:action="add">
-                    <Description>Execute BoxStarter Script</Description>
-                    <Order>5</Order>
-                    <CommandLine>%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/bevinduplessis/Boxstarter/master/BoxStarter.ps1'))"</CommandLine>
-                    <RequiresUserInput>true</RequiresUserInput>
-                </SynchronousCommand>
             </FirstLogonCommands>
             <TimeZone>South Africa Standard Time</TimeZone>
         </component>
