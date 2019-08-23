@@ -85,6 +85,7 @@ Function Install-ISLC
     catch
     {
       Write-Error -Message 'Unable to download ISLC'
+      break
     }
 
     Start-Process -FilePath "$(Get-Temp)\ISLC.exe" -ArgumentList "-y -o$([char]34)$($env:ProgramW6432)$([char]34)" -Wait
@@ -93,6 +94,17 @@ Function Install-ISLC
     {
       Start-Sleep -Seconds 1
     }
+
+    # Create a Shortcut with Windows PowerShell
+    $SourceFileLocation = "$($env:ProgramW6432)\ISLC v1.0.1.1\Intelligent standby list cleaner ISLC.exe"
+    $ShortcutLocation = "$HOME\Desktop\ISLC.lnk"
+    $oShell = New-Object -ComObject WScript.Shell
+    $Shortcut = $oShell.CreateShortcut($ShortcutLocation)
+    $Shortcut.TargetPath = $SourceFileLocation
+    #Save the Shortcut to the TargetPath
+    $Shortcut.Save()
+
+    shimgen -p "$($env:ProgramW6432)\ISLC v1.0.1.1\Intelligent standby list cleaner ISLC.exe" -o "$env:appdata\Microsoft\Windows\Start Menu\Programs\StartUp\" --gui
   }
 }
 
@@ -315,10 +327,10 @@ Install-ChocolateyPackage -Package @(
         'nugetpackageexplorer'
         'winbox'
         'discord'
-        #'origin'
-        #'geforce-game-ready-driver-win10'
-        #'Office365ProPlus'
-        #'kodi'
+        'origin'
+        'geforce-game-ready-driver-win10'
+        'Office365ProPlus'
+        'kodi'
         )
 
 Install-CCEnhancer
